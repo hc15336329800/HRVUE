@@ -1,8 +1,16 @@
 <template>
-   <RouterView />
+<!-- 头部导航 -->
+  <SiteHeader /> 
+  <!-- 动态页面路由 -->
+  <RouterView />
+  <!-- 底部信息 -->
+  <SiteFooter />
 </template>
 
 <script setup>
+import SiteFooter from './components/SiteFooter.vue';
+import SiteHeader from './components/SiteHeader.vue';
+
 // Root component renders the active route.
 </script>
 
