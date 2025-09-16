@@ -1,9 +1,9 @@
 <template>
-  <router-view />
+   <RouterView />
 </template>
 
 <script setup>
-// Root component renders the current route
+// Root component renders the active route.
 </script>
 
 <style>

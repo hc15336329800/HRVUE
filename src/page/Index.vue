@@ -59,6 +59,7 @@
 
 <script setup>
 import { ref } from 'vue';
+defineOptions({ name: 'IndexPage' });
 
 const products = ref([
   { id: 1, name: '产品一', desc: '产品一描述', img: '/images/prod1.jpg' },
