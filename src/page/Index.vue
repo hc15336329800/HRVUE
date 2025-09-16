@@ -22,15 +22,18 @@
       <!-- 上部内容 -->
       <section class="" style="    display: flex;    flex-wrap: nowrap;    justify-content: center;">
         <section class="banner">
-          <div class="banner-container">
-            <transition name="slide" mode="out-in">
-              <img :src="banners[currentIndex].src" :alt="banners[currentIndex].alt" />
-            </transition>
-          </div>
-          <div class="banner-controls">
-            <button @click="prevBanner" class="prev-btn">❮</button>
-            <button @click="nextBanner" class="next-btn">❯</button>
-          </div>
+             <Swiper
+                       class="banner-swiper"
+                       :modules="swiperModules"
+                       :loop="true"
+                       :autoplay="autoplayOptions"
+                       navigation
+                       pagination
+                     >
+                       <SwiperSlide v-for="banner in banners" :key="banner.src">
+                         <img :src="banner.src" :alt="banner.alt" />
+                       </SwiperSlide>
+                     </Swiper>
         </section>
       </section>
 
@@ -71,15 +74,26 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { ref } from 'vue';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+const swiperModules = [Autoplay, Navigation, Pagination];
+const autoplayOptions = {
+  delay: 3000,
+  disableOnInteraction: false,
+};
+
 
 const banners = ref([
   { src: '/src/assets/images/damen001.jpg', alt: 'Banner 1' },
   { src: '/src/assets/images/damen002.jpg', alt: 'Banner 2' },
   // { src: '/src/assets/images/damen003.jpg', alt: 'Banner 3' }
 ]);
-
-const currentIndex = ref(0);
+ 
 
 const products = ref([
   { id: 1, name: '产品一', desc: '产品一描述', img: '/images/prod1.jpg' },
@@ -92,34 +106,7 @@ const news = ref([
   { id: 2, title: '新闻标题二', url: '#', date: '2020-01-02' },
   { id: 3, title: '新闻标题三', url: '#', date: '2020-01-03' }
 ]);
-
-let bannerInterval = null;
-
-const startBannerRotation = () => {
-  bannerInterval = setInterval(() => {
-    currentIndex.value = (currentIndex.value + 1) % banners.value.length;
-  }, 2000); // 每3秒切换一次
-};
-
-const stopBannerRotation = () => {
-  clearInterval(bannerInterval);
-};
-
-const prevBanner = () => {
-  currentIndex.value = (currentIndex.value - 1 + banners.value.length) % banners.value.length;
-};
-
-const nextBanner = () => {
-  currentIndex.value = (currentIndex.value + 1) % banners.value.length;
-};
-
-onMounted(() => {
-  startBannerRotation();
-});
-
-onBeforeUnmount(() => {
-  stopBannerRotation();
-});
+ 
 </script>
  
 <style scoped>
@@ -175,53 +162,49 @@ onBeforeUnmount(() => {
   align-items: center;
 }
 
-.banner-container {
-  display: flex;
-   transition: transform 0.5s ease-in-out;
+ 
+ .banner img {
    width: 100%;
    height: 100%;
-}
-
-.banner img {
- width: 100%;
-   height: 100%;
    object-fit: cover;
-}
-
-
-/* 滑动过渡动画 */
-.banner-enter-active, .banner-leave-active {
-  transition: transform 0.5s ease-in-out;
-}
-
-.banner-enter, .banner-leave-to {
-  transform: translateX(100%); /* 从右滑入 */
-}
-
-/* 控制按钮 */
-.banner-controls {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-}
-
-.prev-btn,
-.next-btn {
-  background: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  border: none;
-  font-size: 30px;
-  padding: 10px;
-  cursor: pointer;
-}
-
-.prev-btn:hover,
-.next-btn:hover {
-  background: rgba(0, 0, 0, 0.8);
-}
+   display: block;
+ }
+ 
+ .banner :deep(.swiper) {
+   width: 100%;
+   height: 100%;
+ }
+ 
+ .banner :deep(.swiper-slide) {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+ 
+ .banner :deep(.swiper-button-prev),
+ .banner :deep(.swiper-button-next) {
+   width: 44px;
+   height: 44px;
+   margin-top: 0;
+   color: #fff;
+   background: rgba(0, 0, 0, 0.4);
+   border-radius: 50%;
+   backdrop-filter: blur(2px);
+ }
+ 
+ .banner :deep(.swiper-button-prev:hover),
+ .banner :deep(.swiper-button-next:hover) {
+   background: rgba(0, 0, 0, 0.7);
+ }
+ 
+ .banner :deep(.swiper-pagination-bullet) {
+   background: rgba(255, 255, 255, 0.6);
+   opacity: 1;
+ }
+ 
+ .banner :deep(.swiper-pagination-bullet-active) {
+   background: #fff;
+ }
 
 /* 中部内容布局 */
 .middle-section {
