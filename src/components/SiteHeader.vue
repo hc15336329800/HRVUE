@@ -18,7 +18,7 @@
       </button>
 
       <nav class="nav" :class="{ open: isMenuOpen }">
-        <a href="#" @click="closeMenu">首页</a>
+        <a href="/" @click="closeMenu">首页</a>
         <a href="about" @click="closeMenu">关于公司</a>
         <a href="#" @click="closeMenu">产品信息</a>
         <a href="#" @click="closeMenu">咨询动态</a>
@@ -59,7 +59,7 @@ const closeMenu = () => {
   justify-content: space-between;
   align-items: center;
   max-width: 1080px;
-  max-height: 90px;
+  /* max-height: 90px; */
 }
 
 .logo {

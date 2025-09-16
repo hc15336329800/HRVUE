@@ -132,7 +132,7 @@
 		flex-wrap: wrap;
 		gap: 5px;
 		justify-content: space-between;
-		margin-bottom: 30px;
+		margin-bottom: 15px;
 	}
 
 
@@ -298,6 +298,13 @@
 	}
 
 	@media (max-width: 768px) {
+		.footer-column.newsletter {
+					display: none;
+				}
+		
+				.wechat h5 {
+					display: none;
+				}
 		.footer-content {
 			gap: 30px;
 		}
