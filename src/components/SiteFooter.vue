@@ -5,11 +5,19 @@
 				<section class="footer-column contact">
 					<h3>联系我们</h3>
 					<ul class="contact-list">
-						<li>
+		<!-- 				<li>
 							<a class="contact-link"
 								href="http://wpa.qq.com/msgrd?v=3&uin=386767048&site=www.cactussoft.cn&menu=yes"
 								target="_blank" rel="noopener">
 								客服：腾讯QQ在线客服
+							</a>
+						</li> -->
+						<li>
+							<a class="contact-link" href="mailto:sdhrjt@tom.com">邮箱：sdhrjt168@163.com</a>
+						</li>
+						<li>
+							<a class="contact-link" href="http://www.sdhrjt.net" target="_blank" rel="noopener">
+								网 址：www.sdhrjt.net
 							</a>
 						</li>
 						<li>
@@ -28,14 +36,7 @@
 						<li>
 							<a class="contact-link" href="#">公众号：sdhrdf</a>
 						</li>
-						<li>
-							<a class="contact-link" href="mailto:sdhrjt@tom.com">邮箱：sdhrjt168@163.com</a>
-						</li>
-						<li>
-							<a class="contact-link" href="http://www.sdhrjt.net" target="_blank" rel="noopener">
-								网 址：www.sdhrjt.net
-							</a>
-						</li>
+						
 						<li>
 							<address>地 址：山东省滕州市辛绪工业园</address>
 						</li>
@@ -328,4 +329,7 @@
 			width: 100%;
 		}
 	}
+	
+	
+	
 </style>
