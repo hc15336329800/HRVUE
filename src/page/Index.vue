@@ -42,21 +42,32 @@
       </section>
 
 
-      <!-- 中部内容 -->
-      <section class="middle-section">
-        <section class="products">
-          <h2>产品展示</h2>
-          <div class="product-list">
-            <div v-for="p in products" :key="p.id" class="product">
-              <img :src="p.img" :alt="p.name" />
-              <h3>{{ p.name }}</h3>
-              <p>{{ p.desc }}</p>
-            </div>
-          </div>
-        </section>
+      <!-- 产品展示跑马灯 -->
+      <section class="products">
+        <!-- <h2>产品展示</h2> -->
+        <!-- 跑马灯（Swiper） -->
+        <Swiper
+          class="prod-marquee"
+          :modules="swiperModules"
+          :loop="true"
+          :autoplay="prodAutoplay"       
+      :speed="10000"                           
+       :free-mode="{ enabled: true, momentum: false }"
+      :loop-additional-slides="products.length"   
+          :allow-touch-move="true"
+          slides-per-view="auto"          
+          :space-between="16"
+        >
+          <SwiperSlide v-for="p in products" :key="p.id">
+            <a class="prod-card" :href="p.url || '#'" target="_blank" rel="noopener">
+              <div class="img-wrap"><img :src="p.img" :alt="p.name" /></div>
+              <div class="title">{{ p.name }}</div>
+            </a>
+          </SwiperSlide>
+        </Swiper>
+      </section>
 
  
-      </section>
     </main>
   </div>
 </template>
@@ -64,12 +75,15 @@
 <script setup>
 import { ref } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { Autoplay, Navigation, Pagination, FreeMode } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-const swiperModules = [Autoplay, Navigation, Pagination];
+const swiperModules = [Autoplay, Navigation, Pagination, FreeMode];
+ // 跑马灯自动播放：0 延迟 + 匀速
+const prodAutoplay = { delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true };
+
 const autoplayOptions = {
   delay: 2000,
   disableOnInteraction: false,
@@ -87,27 +101,14 @@ const banners = ref([
   // { src: '/src/assets/images/damen003.jpg', alt: 'Banner 3' }
 ]);
 
-const products = ref([
-  {
-    id: 1,
-    name: '产品一',
-    desc: '产品一描述',
-    img: '/images/prod1.jpg',
-  },
-  {
-    id: 2,
-    name: '产品二',
-    desc: '产品二描述',
-    img: '/images/prod2.jpg',
-  },
-  {
-    id: 3,
-    name: '产品三',
-    desc: '产品三描述',
-    img: '/images/prod3.jpg',
-  },
-]);
-
+  const products = ref([
+    { id: 1, name: '产品一', desc: '产品一描述', img: '/src/assets/images/大门.jpg', url: '#' },
+    { id: 2, name: '产品二', desc: '产品二描述', img: '/src/assets/images/大门.jpg', url: '#' },
+    { id: 3, name: '产品三', desc: '产品三描述', img: '/src/assets/images/大门.jpg', url: '#' },
+	{ id: 4, name: '产品三', desc: '产品三描述', img: '/src/assets/images/大门.jpg', url: '#' },
+	{ id: 5, name: '产品三', desc: '产品三描述', img: '/src/assets/images/大门.jpg', url: '#' },
+	{ id: 6, name: '产品三', desc: '产品三描述', img: '/src/assets/images/大门.jpg', url: '#' },
+  ]);
 const news = ref([
   {
     id: 1,
@@ -312,6 +313,34 @@ const productLines = ref([
   .banner :deep(.swiper-pagination-bullet){ width:6px; height:6px; margin:0 2px; }
   .banner :deep(.swiper-pagination-bullets){ bottom:6px !important; }
 }
+
+
+/* ===== 产品跑马灯样式（新增） ===== */
+.products { width:100%; }
+.products h2 { text-align:center; margin:0 0 12px; }
+
+/* 容器宽度与公司介绍一致：1080 + 两侧内边距 */
+.prod-marquee { max-width:1080px; margin:15px auto;  }
+.prod-marquee :deep(.swiper-wrapper){ transition-timing-function: linear !important; } /* 匀速 */
+
+/* 每个卡片：固定宽度，slidesPerView=auto 会按此宽度滚动 */
+.prod-marquee :deep(.swiper-slide){ width:180px !important; }    /* PC 卡片宽度 */
+.prod-card{ display:block; text-decoration:none; color:#333; }
+.img-wrap{ width:100%; height:120px; border-radius:8px; overflow:hidden; border:1px solid #eee; background:#f7f7f7; }
+.img-wrap img{ width:100%; height:100%; object-fit:cover; display:block; }
+.title{ text-align:center; font-size:14px; margin-top:8px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+/* 小屏更紧凑、与公司概览同边距 */
+@media (max-width: 768px){
+  .prod-marquee{ padding:0 12px; }
+  .prod-marquee :deep(.swiper-slide){ width:150px !important; }  /* 手机卡片宽度 */
+  .img-wrap{ height:96px; border-radius:6px; }
+  /* 与上方一致：隐藏箭头、缩小圆点（如需） */
+  .products :deep(.swiper-button-prev),
+  .products :deep(.swiper-button-next){ display:none !important; }
+  .products :deep(.swiper-pagination-bullet){ width:6px; height:6px; margin:0 2px; }
+}
+
 
 
 </style>

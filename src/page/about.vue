@@ -1,5 +1,5 @@
 <template>
-	666
+	页面维护中~
 </template>
 
 <script>
