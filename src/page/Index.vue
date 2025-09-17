@@ -51,9 +51,7 @@
           :modules="swiperModules"
           :loop="true"
           :autoplay="prodAutoplay"       
-      :speed="10000"                           
-       :free-mode="{ enabled: true, momentum: false }"
-      :loop-additional-slides="products.length"   
+      :speed="1500"                             
           :allow-touch-move="true"
           slides-per-view="auto"          
           :space-between="16"
@@ -82,7 +80,7 @@ import 'swiper/css/pagination';
 
 const swiperModules = [Autoplay, Navigation, Pagination, FreeMode];
  // 跑马灯自动播放：0 延迟 + 匀速
-const prodAutoplay = { delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true };
+const prodAutoplay = { delay: 0, disableOnInteraction: false, pauseOnMouseEnter: false };
 
 const autoplayOptions = {
   delay: 2000,
@@ -102,12 +100,18 @@ const banners = ref([
 ]);
 
   const products = ref([
-    { id: 1, name: '产品一', desc: '产品一描述', img: '/src/assets/images/大门.jpg', url: '#' },
-    { id: 2, name: '产品二', desc: '产品二描述', img: '/src/assets/images/大门.jpg', url: '#' },
-    { id: 3, name: '产品三', desc: '产品三描述', img: '/src/assets/images/大门.jpg', url: '#' },
-	{ id: 4, name: '产品三', desc: '产品三描述', img: '/src/assets/images/大门.jpg', url: '#' },
-	{ id: 5, name: '产品三', desc: '产品三描述', img: '/src/assets/images/大门.jpg', url: '#' },
-	{ id: 6, name: '产品三', desc: '产品三描述', img: '/src/assets/images/大门.jpg', url: '#' },
+   { id: 1, name: '玉米淀粉', desc: '恒仁一级玉米淀粉', img: '/src/assets/images/p1.jpg', url: '#' },
+   { id: 2, name: '麦芽糖稀、葡萄糖稀', desc: '恒仁麦芽糖稀、葡萄糖稀', img: '/src/assets/images/p2.jpg', url: '#' },
+   { id: 3, name: '喷浆玉米皮、玉米纤维', desc: '喷浆玉米皮、玉米纤维', img: '/src/assets/images/p3.jpg', url: '#' },
+   { id: 4, name: '玉米浆', desc: '玉米浆', img: '/src/assets/images/p4.jpg', url: '#' },
+   { id: 5, name: '蛋白颗粒', desc: '蛋白颗粒', img: '/src/assets/images/p5.jpg', url: '#' },
+   { id: 6, name: '玉米胚芽', desc: '玉米胚芽', img: '/src/assets/images/p6.jpg', url: '#' },
+   { id: 7, name: '玉米淀粉', desc: '恒仁一级玉米淀粉', img: '/src/assets/images/p1.jpg', url: '#' },
+   { id: 8, name: '麦芽糖稀、葡萄糖稀', desc: '恒仁麦芽糖稀、葡萄糖稀', img: '/src/assets/images/p2.jpg', url: '#' },
+   { id: 9, name: '喷浆玉米皮、玉米纤维', desc: '喷浆玉米皮、玉米纤维', img: '/src/assets/images/p3.jpg', url: '#' },
+   { id: 10, name: '玉米浆', desc: '玉米浆', img: '/src/assets/images/p4.jpg', url: '#' },
+   { id: 11, name: '蛋白颗粒', desc: '蛋白颗粒', img: '/src/assets/images/p5.jpg', url: '#' },
+   { id: 12, name: '玉米胚芽', desc: '玉米胚芽', img: '/src/assets/images/p6.jpg', url: '#' },
   ]);
 const news = ref([
   {
