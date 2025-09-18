@@ -57,16 +57,18 @@ const isMenuOpen = ref(false);
 const menuItems = [
   { label: '首页', href: '/' },
   { label: '关于公司', href: '/about' },
-  {
-    label: '产品信息',
-    href: 'products',
-    children: [
-      { label: '产品概览', href: '/products/overview' },
-      { label: '解决方案', href: '/products/solutions' },
-      { label: '常见问题', href: '/products/faq' }
-    ]
-  },
-  { label: '咨询动态', href: '/news' },
+    { label: '产品信息', href: '/products' },
+
+  // {
+  //   label: '产品信息',
+  //   href: 'products',
+  //   children: [
+  //     { label: '产品概览', href: '/products/overview' },
+  //     { label: '解决方案', href: '/products/solutions' },
+  //     { label: '常见问题', href: '/products/faq' }
+  //   ]
+  // },
+  // { label: '咨询动态', href: '/news' },
   { label: '联系方式', href: '/contact' }
 ];
 
